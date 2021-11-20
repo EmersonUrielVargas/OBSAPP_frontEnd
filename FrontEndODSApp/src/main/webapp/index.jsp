@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,17 +24,11 @@
             <li><a href="list_project.html">Proyectos</a></li>
             <li><a href="badges.html">ODS</a></li>
             <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>Acerca De
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-              <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!">Nosotros</a></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="#!">Políticas</a></li>
-              </ul>
+                <i class="material-icons right">arrow_drop_down</i></a>
+              	<ul id='dropdown1' class='dropdown-content'>
+              	</ul>
             </li>
-            <li><a href="collapsible.html"
-              class="btn waves-effect waves-light">Login
-            </a></li>
+            <li><a href="collapsible.html">Login</a></li>
           </ul>
         </div>
 
@@ -52,8 +46,7 @@
                 <li><a href="#!">Políticas</a></li>
               </ul>
             </li>
-            <li><a href="collapsible.html"
-              class="btn waves-effect waves-light">Login
+            <li><a href="collapsible.html">Login
             </a></li>
         </ul>
         </div>
@@ -69,22 +62,21 @@
 
     <div class="container">
       <div class="col s12 m7">
-        <div class="card horizontal">
-          <div class="card-image z-depth-5">
-            <img style="object-fit: none;"
-            src="https://www.co.undp.org/content/dam/colombia/img/Pobreza/ReactivAccion/UNDP_Co_POB_Proyectos_ReactivAccion_Sept6_2021_emprendimiento4.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg">
+        <div class="card">
+          <div class="card-image">
+            <img 
+            src="resources/logo_2.png">
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <h2 class="header">ReactivAcción</h2>
-              <p>La Agencia de los Estados Unidos para el Desarrollo Internacional (USAID) 
-                y el Programa de las Naciones Unidas para el Desarrollo (PNUD) lideran la 
-                estrategia ReactivAcción con la que buscan apoyar los esfuerzos gubernamentales 
-                para “No dejar a nadie atrás” y llegar a las personas y territorios más rezagados 
-                mediante la adaptación y mitigación del impacto del covid-19 en el país.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">Ver detalles</a>
+              <h2 class="header">¿Que son las ODS?</h2>
+              <p>En 2015, la ONU aprobó la Agenda 2030 sobre el Desarrollo Sostenible,
+               una oportunidad para que los países y sus sociedades emprendan un nuevo  
+               camino con el que mejorar la vida de todos, sin dejar a nadie atrás. La 
+               Agenda cuenta con 17 Objetivos de Desarrollo Sostenible, que incluyen 
+               desde la eliminación de la pobreza hasta el combate al cambio climático, 
+               la educación, la igualdad de la mujer, la defensa del medio ambiente o 
+               el diseño de nuestras ciudades.</p>
             </div>
           </div>
         </div>
@@ -95,17 +87,23 @@
     <div class="row">
         <div class="col s12">
             <div class="carousel">
-                <a class="carousel-item" href="#1"><img src="Azul-petroleo-tommy.png">
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </a>
-                <a class="carousel-item" href="#2!"><img src="Azul-tommy.png"></a>
-                <a class="carousel-item" href="#3!"><img src="Negro-tommy.png"></a>
-                <a class="carousel-item" href="#4!"><img src="Rojo-tommy.png"></a>
-                <a class="carousel-item" href="#5!"><img src="verde--menta_optimized.png">
-                </a>
+                <a class="carousel-item" href="#1!"><img src="resources/obs1_logo.png"></a>
+                <a class="carousel-item" href="#2!"><img src="resources/obs2_logo.png"></a>
+                <a class="carousel-item" href="#3!"><img src="resources/obs3_logo.png"></a>
+                <a class="carousel-item" href="#4!"><img src="resources/obs4_logo.png"></a>
+                <a class="carousel-item" href="#5!"><img src="resources/obs5_logo.png"></a>
+                <a class="carousel-item" href="#6!"><img src="resources/obs6_logo.png"></a>
+                <a class="carousel-item" href="#7!"><img src="resources/obs7_logo.png"></a>
+                <a class="carousel-item" href="#8!"><img src="resources/obs8_logo.png"></a>
+                <a class="carousel-item" href="#9!"><img src="resources/obs9_logo.png"></a>
+                <a class="carousel-item" href="#10!"><img src="resources/obs10_logo.png"></a>
+                <a class="carousel-item" href="#11!"><img src="resources/obs11_logo.png"></a>
+                <a class="carousel-item" href="#12!"><img src="resources/obs12_logo.png"></a>
+                <a class="carousel-item" href="#13!"><img src="resources/obs13_logo.png"></a>
+                <a class="carousel-item" href="#14!"><img src="resources/obs14_logo.png"></a>
+                <a class="carousel-item" href="#15!"><img src="resources/obs15_logo.png"></a>
+                <a class="carousel-item" href="#16!"><img src="resources/obs16_logo.png"></a>
+                <a class="carousel-item" href="#17!"><img src="resources/obs17_logo.png"></a>
             </div>
         </div>
     </div>
