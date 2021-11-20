@@ -36,5 +36,10 @@ public class ODS {
 	public int getOds_id() {
 		return ods_id;
 	}
+
+
+	public void setOds_id(int ods_id) {
+		this.ods_id = ods_id;
+	}
 	
 }

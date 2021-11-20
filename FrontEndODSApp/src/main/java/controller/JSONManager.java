@@ -17,6 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.ODS;
 import model.Users;
 
 public class JSONManager {
@@ -24,11 +25,44 @@ public class JSONManager {
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
 
-	// CRUD Clients
+	//ODS
+	
+	public static ArrayList<ODS> listOds() throws IOException, ParseException {
+		url = new URL(sitio + "ods/listODS");
+		HttpURLConnection http = (HttpURLConnection) url.openConnection();
+		http.setRequestMethod("GET");
+		http.setRequestProperty("Accept", "application/json");
+		InputStream respuesta = http.getInputStream();
+		byte[] inp = respuesta.readAllBytes();
+		String json = "";
+		for (int i = 0; i < inp.length; i++) {
+			json += (char) inp[i];
+		}
+		ArrayList<ODS> lista = new ArrayList<ODS>();
+		lista = parsingOds(json);
+		http.disconnect();
+		return lista;
+	}
+	
+	public static ArrayList<ODS> parsingOds(String json) throws ParseException {
+		JSONParser jsonParser = new JSONParser();
+		ArrayList<ODS> list = new ArrayList<ODS>();
+		JSONArray users = (JSONArray) jsonParser.parse(json);
+		Iterator<?> i = users.iterator();
+		while (i.hasNext()) {
+			JSONObject innerObj = (JSONObject) i.next();
+			ODS ods = new ODS();
+			ods.setOds_id(Integer.parseInt(innerObj.get("ods_id").toString()));
+			ods.setDescripcion(innerObj.get("descripcion").toString());
+			ods.setLogoPath(innerObj.get("logoPath").toString());
+			list.add(ods);
+		}
+		return list;
+	}
 
 
 	// CRUD Users
-
+/*
 	public static int addUser(Users usuario) throws IOException {
 		int respuesta = 0;
 		if (verifyUser(usuario.getId())) {
@@ -57,7 +91,7 @@ public class JSONManager {
 			http.disconnect();
 		}
 		return respuesta;
-	}
+	}*/
 
 	public static int updateUser(Users usuario) throws IOException {
 		url = new URL(sitio + "users/updateUser");
@@ -144,12 +178,14 @@ public class JSONManager {
 			json += (char) inp[i];
 		}
 		ArrayList<Users> lista = new ArrayList<Users>();
-		lista = parsingUsuarios(json);
+		//lista = parsingUsuarios(json);
 		http.disconnect();
 		return lista;
 	}
+	
+	
 
-	public static ArrayList<Users> parsingUsuarios(String json) throws ParseException {
+	/*public static ArrayList<Users> parsingUsuarios(String json) throws ParseException {
 		JSONParser jsonParser = new JSONParser();
 		ArrayList<Users> list = new ArrayList<Users>();
 		JSONArray users = (JSONArray) jsonParser.parse(json);
@@ -165,5 +201,5 @@ public class JSONManager {
 			list.add(user);
 		}
 		return list;
-	}
+	}*/
 }
