@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     
 </head>
-<body>
+<body style=" height: 400px; background-image: url('resources/fondo_manos.jpg'); 
+ 		background-size: cover; background-repeat:no-repeat;
+ 		background-position: center center">
     <!-- Navbar Structure -->
     <nav class=" blue darken-3">
         <div class="container">
@@ -22,7 +24,7 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="list_project.html">Proyectos</a></li>
-            <li><a href="badges.html">ODS</a></li>
+            <li><a href="ObsList.jsp">ODS</a></li>
             <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>Acerca De
                 <i class="material-icons right">arrow_drop_down</i></a>
               	<ul id='dropdown1' class='dropdown-content'>
@@ -35,7 +37,7 @@
       
         <ul class="sidenav" id="mobile-demo">
           <li><a href="list_project.html">Proyectos</a></li>
-            <li><a href="badges.html">ODS</a></li>
+            <li><a href="ObsList.jsp">ODS</a></li>
             <li>  
               <a class='dropdown-trigger' href='#' data-target='dropdown1'>Acerca De
                 <i class="material-icons right">arrow_drop_down</i>
@@ -57,36 +59,10 @@
 
 
 
-
-
-
-    <div class="container">
-      <div class="col s12 m7">
-        <div class="card">
-          <div class="card-image">
-            <img 
-            src="resources/logo_2.png">
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <h2 class="header">¿Que son las ODS?</h2>
-              <p>En 2015, la ONU aprobó la Agenda 2030 sobre el Desarrollo Sostenible,
-               una oportunidad para que los países y sus sociedades emprendan un nuevo  
-               camino con el que mejorar la vida de todos, sin dejar a nadie atrás. La 
-               Agenda cuenta con 17 Objetivos de Desarrollo Sostenible, que incluyen 
-               desde la eliminación de la pobreza hasta el combate al cambio climático, 
-               la educación, la igualdad de la mujer, la defensa del medio ambiente o 
-               el diseño de nuestras ciudades.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
+	<div class="container" style="background-color: white;">
     <div class="row">
         <div class="col s12">
-            <div class="carousel">
+            <div class="carousel" >
                 <a class="carousel-item" href="#1!"><img src="resources/obs1_logo.png"></a>
                 <a class="carousel-item" href="#2!"><img src="resources/obs2_logo.png"></a>
                 <a class="carousel-item" href="#3!"><img src="resources/obs3_logo.png"></a>
@@ -107,8 +83,37 @@
             </div>
         </div>
     </div>
-            
-        
+
+
+    <div class="container">
+      <div class="col s12 m7">
+        <div class="card">
+          <div class="card-image">
+            <img 
+            src="resources/logo_2.png">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h2 class="header">¿Que son las ODS?</h2>
+              <p>En 2015, la ONU aprobó la Agenda 2030 sobre el Desarrollo Sostenible,
+               una oportunidad para que los países y sus sociedades emprendan un nuevo  
+               camino con el que mejorar la vida de todos, sin dejar a nadie atrás. La 
+               Agenda cuenta con 17 Objetivos de Desarrollo Sostenible, que incluyen 
+               desde la eliminación de la pobreza hasta el combate al cambio climático, 
+               la educación, la igualdad de la mujer, la defensa del medio ambiente o 
+               el diseño de nuestras ciudades.</p>
+            </div>
+            <div class="card-action">
+              <a href="ObsList.jsp">Ver detalles</a>
+            </div>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+              
    
 
     

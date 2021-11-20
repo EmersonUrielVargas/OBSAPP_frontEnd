@@ -1,5 +1,6 @@
 package model;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 
 public class Users {
 	
@@ -58,6 +59,5 @@ public class Users {
 	public Integer getUser_id() {
 		return user_id;
 	}
-	
-	
+
 }
