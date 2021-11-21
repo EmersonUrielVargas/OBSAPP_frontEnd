@@ -54,6 +54,23 @@ public class Projects {
 	public Users getDeveloper_id() {
 		return developer_id;
 	}
+
+
+	public void setProject_id(int project_id) {
+		this.project_id = project_id;
+	}
+
+
+	public void setDeveloper_id(Users developer_id) {
+		this.developer_id = developer_id;
+	}
+
+
+	public void setOds_id(ODS ods_id) {
+		this.ods_id = ods_id;
+	}
+	
+	
 	
 	
 	

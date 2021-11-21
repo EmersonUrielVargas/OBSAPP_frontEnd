@@ -12,18 +12,33 @@ import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import model.ODS;
+import model.Projects;
 import model.Users;
 
 public class JSONManager {
 
+	private static JSONManager jso;
 	private static URL url;
 	private static String sitio = "http://localhost:5000/";
+	private Users userSession;
+	
+	private JSONManager() {
+		userSession = null;
+	}
+	
+	public  static JSONManager getJSONManager() {
+		if (jso == null) {
+			jso = new JSONManager();
+		}
+		return jso;
+	}
 
 	//ODS
 	
@@ -62,13 +77,11 @@ public class JSONManager {
 
 
 	// CRUD Users
-/*
 	public static int addUser(Users usuario) throws IOException {
 		int respuesta = 0;
-		if (verifyUser(usuario.getId())) {
+		if (false /*verifyUser(usuario.getId())*/) {
 			respuesta = 300;
 		} else {
-
 			url = new URL(sitio + "users/saveUser");
 			HttpURLConnection http;
 			http = (HttpURLConnection) url.openConnection();
@@ -91,7 +104,11 @@ public class JSONManager {
 			http.disconnect();
 		}
 		return respuesta;
-	}*/
+	}
+	
+	public static void redireccionar() {
+		
+	}
 
 	public static int updateUser(Users usuario) throws IOException {
 		url = new URL(sitio + "users/updateUser");
@@ -153,7 +170,6 @@ public class JSONManager {
 			user.setDescription(innerObj.get("description").toString());
 			user.setPasword(innerObj.get("pasword").toString());
 			user.setPhone(Integer.parseInt(innerObj.get("phone").toString()));
-
 			http.disconnect();
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
@@ -161,6 +177,48 @@ public class JSONManager {
 
 		return user;
 	}
+	
+	public static Projects askProject(int prod_Id) {
+		Projects proj = new Projects();
+		try {
+			url = new URL(sitio + "/askProyect/" + prod_Id);
+			HttpURLConnection http = (HttpURLConnection) url.openConnection();
+			http.setRequestMethod( "GET");
+			http.setRequestProperty("Accept", "application/json");
+			InputStream respuesta = http.getInputStream();
+			byte[] inp = respuesta.readAllBytes();
+			String json = "";
+			for (int i = 0; i < inp.length; i++) {
+				json += (char) inp[i];
+			}
+			JSONParser jsonParser = new JSONParser();
+			JSONObject innerObj = (JSONObject) jsonParser.parse(json);
+			proj.setProject_id(Integer.parseInt(innerObj.get("project_id").toString()));
+			proj.setName(innerObj.get("name").toString());
+			proj.setDescription(innerObj.get("description").toString());
+			proj.setScore(Integer.parseInt(innerObj.get("score").toString()));
+			proj.setDeveloper_id(parsingUsuario((JSONObject)innerObj.get("developer_id")));
+			proj.setOds_id(parsingODS((JSONObject)innerObj.get("ods_id")));
+			http.disconnect();
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+
+		return proj;
+	}
+	
+	
+	public static ODS askODS(int ods_id) throws IOException, ParseException {
+		ArrayList<ODS> odslist = listOds();
+		ODS ods = null;
+		for (ODS odsAux : odslist) {
+			if (odsAux.getOds_id() == ods_id) {
+				ods = odsAux;
+			}
+		}
+		return ods;
+	}
+
 
 
 
@@ -184,22 +242,69 @@ public class JSONManager {
 	}
 	
 	
-
-	/*public static ArrayList<Users> parsingUsuarios(String json) throws ParseException {
+	public static ArrayList<Projects> listProjectsByODS(int ods_id) throws IOException, ParseException {
+		url = new URL(sitio + "proyects/proyects/ods/"+ods_id);
+		HttpURLConnection http = (HttpURLConnection) url.openConnection();
+		http.setRequestMethod("GET");
+		http.setRequestProperty("Accept", "application/json");
+		InputStream respuesta = http.getInputStream();
+		byte[] inp = respuesta.readAllBytes();
+		String json = "";
+		for (int i = 0; i < inp.length; i++) {
+			json += (char) inp[i];
+		}
+		ArrayList<Projects> lista = new ArrayList<Projects>();
+		lista = parsingProjects(json);
+		http.disconnect();
+		return lista;
+	}
+	
+	public static ArrayList<Projects> parsingProjects(String json) throws ParseException {
 		JSONParser jsonParser = new JSONParser();
-		ArrayList<Users> list = new ArrayList<Users>();
-		JSONArray users = (JSONArray) jsonParser.parse(json);
-		Iterator<?> i = users.iterator();
+		ArrayList<Projects> list = new ArrayList<Projects>();
+		JSONArray projects = (JSONArray) jsonParser.parse(json);
+		Iterator<?> i = projects.iterator();
 		while (i.hasNext()) {
 			JSONObject innerObj = (JSONObject) i.next();
-			Users user = new Users();
-			user.setUser_id(Long.parseLong(innerObj.get("user_id").toString()));
-			user.setUser_email(innerObj.get("user_email").toString());
-			user.setUser_name(innerObj.get("user_name").toString());
-			user.setPassword(innerObj.get("password").toString());
-			user.setUser(innerObj.get("user").toString());
-			list.add(user);
+			Projects prodAux = new Projects();
+			prodAux.setProject_id(Integer.parseInt(innerObj.get("project_id").toString()));
+			prodAux.setName(innerObj.get("name").toString());
+			prodAux.setDescription(innerObj.get("description").toString());
+			prodAux.setScore(Integer.parseInt(innerObj.get("score").toString()));
+			prodAux.setDeveloper_id(parsingUsuario((JSONObject)innerObj.get("developer_id")));
+			prodAux.setOds_id(parsingODS((JSONObject)innerObj.get("ods_id")));
+			list.add(prodAux);
 		}
 		return list;
-	}*/
+	}
+
+	
+
+	public static Users parsingUsuario(JSONObject json) throws ParseException {
+			Users user = new Users();
+			user.setName(json.get("name").toString());
+			user.setEmail(json.get("email").toString());
+			user.setDescription(json.get("description").toString());
+			user.setPasword(json.get("pasword").toString());
+			user.setPhone(Integer.parseInt(json.get("phone").toString()));	
+		return user;
+	}
+	
+	public static ODS parsingODS(JSONObject json) throws ParseException {
+		ODS ods = new ODS();
+		ods.setOds_id(Integer.parseInt(json.get("ods_id").toString()));
+		ods.setDescripcion(json.get("descripcion").toString());
+		ods.setLogoPath(json.get("logoPath").toString());
+	return ods;
+	}
+	
+	
+	public  Users getUserSession() {
+		
+		return userSession;
+	}
+
+	public void setUserSession(Users userSession) {
+		this.userSession = userSession;
+	}
 }

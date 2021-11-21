@@ -12,7 +12,7 @@ public class Users {
 	private String description;
 	
 	public Users() {
-		
+		user_id= 0;
 	}
 	
 	public String getPasword() {

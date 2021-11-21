@@ -1,0 +1,61 @@
+.modal {
+    top:20vh;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+}
+
+
+.body {
+  background: rgb(92, 81, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(92, 81, 255, 1) 0%,
+    rgba(223, 37, 247, 1) 57%,
+    rgba(245, 24, 133, 1) 100%
+  );
+
+  width: 100vw;
+  height: 100vw;
+}
+
+.login-div{
+    top:20vh;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+}
+
+.card-login{
+    top:20vh;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 20px;
+    height: auto;
+}
+
+.spam-title{
+    width: 100%;
+    text-align: center;
+}
+
+.spam-title h1, h2, h3, h4, h5, h6, p {
+    font-weight: bold;
+    color: purple;
+}
+
+.login-div-send{
+    text-align: center;
+    padding-top: 13px;
+}
+
+
+
+.image {
+    background-image: url(images/login.jpeg);
+}

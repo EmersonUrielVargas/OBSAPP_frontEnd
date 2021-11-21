@@ -1,3 +1,4 @@
+<%@page import="model.Projects"%>
 <%@page import="controller.JSONManager"%>
 <%@page import="model.ODS"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,7 +21,14 @@
     
 </head>
 <body>
-    <!-- Navbar Structure -->
+
+	<%String res = request.getParameter("odsId");
+	ODS ods =null;
+	if (res != null) {
+		int odsId = Integer.parseInt(res);
+		ods = JSONManager.askODS(odsId);
+	}%>
+	<!-- Navbar Structure -->
     <nav class="purple">
         <div class="container">
         <div class="nav-wrapper">
@@ -65,54 +73,26 @@
         </ul>
         </div>
     </nav>  
-
-    <!--- ODS -->
-    
-        <div class="carousel">
-            <a class="carousel-item" href="#one!"><img src="http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg"></a>
-            <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-            <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-            <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-            <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
-        </div>
    
 
     <!-- Content Structure -->
  
    <div class="section">
        <div class="container">
-        <h2 class="header">Objetivos de Desarrollo Sostenible</h2>
+        <h2 class="header">Objetivo de Desarrollo Sostenible <%=ods.getOds_id()%></h2>
             <div class="row">
                 <div class="col s12 m12">
-                
-                <%ArrayList<ODS> odsList = JSONManager.listOds();
-                  boolean estate = false;
-                  for (ODS ods : odsList) {%>
 					<div class="card horizontal small">
-					<%if(!estate){ %>
 						<div class="card-image">
 							<img style="height: 100%;" class="resposive"
 								src="<%=ods.getLogoPath()%>">
 						</div>
 						<div class="card-stacked">
-							<div class="card-content">
+							<div class="card-content" style="align-items: center;">
 								<p><%=ods.getDescripcion()%></p>
 							</div>
 						</div>
-					<%estate = true;}else{%>
-						<div class="card-stacked">
-							<div class="card-content">
-								<p><%=ods.getDescripcion()%></p>
-							</div>
-						</div>
-						<div class="card-image">
-							<img style="height: 100%;" class="resposive"
-								src="<%=ods.getLogoPath()%>">
-							</div>
-						
-					<%estate= false;}%>
 					</div>
-				<%}%>
 	
 				</div>
                 <div class="col s12 m12">
@@ -120,6 +100,28 @@
                 </div>
             </div>
         </div>
+   </div>
+   
+     <div class="section">
+       <div class="container">
+        <h2 class="header" style="align-items: center">Proyectos implementados</h2>
+            <div class="row">
+            <%ArrayList<Projects> projectList = JSONManager.listProjectsByODS(ods.getOds_id()); 
+            for (Projects project : projectList) { %>
+            	 <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                        <img src="resources/img/projets_<%=project.getProject_id()%>.png">
+                        <span class="card-title"><strong><%=project.getName()%></strong></span>
+                        </div>
+                        <div class="card-content">
+                        <p><%=project.getDescription()%></p>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+             </div>
+       </div>
    </div>
     
     

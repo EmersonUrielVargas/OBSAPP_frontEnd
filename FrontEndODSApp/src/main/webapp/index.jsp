@@ -1,3 +1,5 @@
+<%@page import="controller.JSONManager"%>
+<%@page import="controller.ServletApp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,45 +19,52 @@
  		background-size: cover; background-repeat:no-repeat;
  		background-position: center center">
     <!-- Navbar Structure -->
+    
+    <%String res= request.getParameter("user_logOut");
+    if(res != null){
+    	if(res.equals("0")){
+    		JSONManager.getJSONManager().setUserSession(null);
+    	}
+    }%>
     <nav class=" blue darken-3">
         <div class="container">
         <div class="nav-wrapper">
-          <a href="list_ods" class="brand-logo">ODS PARA TODOS</a>
+          <a class="brand-logo">ODS PARA TODOS</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="list_project.html">Proyectos</a></li>
+          <li><a href="index.jsp">Home</a></li>
+          <li><a href="ProyectsList.jsp">Proyectos</a></li>
             <li><a href="ObsList.jsp">ODS</a></li>
-            <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>Acerca De
-                <i class="material-icons right">arrow_drop_down</i></a>
-              	<ul id='dropdown1' class='dropdown-content'>
-              	</ul>
-            </li>
-            <li><a href="collapsible.html">Login</a></li>
+            <%if(JSONManager.getJSONManager().getUserSession() == null){%>
+            <li><a href="Login.jsp">Iniciar Sesion</a></li>
+            <li><a href="CreateUser.jsp">Registrarse</a></li>
+            <%}else{ %>
+            <!-- Dropdown Trigger -->
+      		<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
+      		Usuario<i class="material-icons right">arrow_drop_down</i></a>
+            
+			<ul id="dropdown1" class="dropdown-content">
+				
+				<li><a href="#!">Mis Proyectos</a></li>
+				<li><a href="updateUser.jsp">Modificar Datos</a></li>
+				<li class="divider"></li>
+				<li><a href="index.jsp?user_logOut=0">Cerrar Sesion</a></li>
+			</ul>
+			</li>
+			<%}%>
           </ul>
         </div>
 
       
         <ul class="sidenav" id="mobile-demo">
-          <li><a href="list_project.html">Proyectos</a></li>
+        <li><a href="index.jsp">Home</a></li>
+          <li><a href="ProyectsList.jsp">Proyectos</a></li>
             <li><a href="ObsList.jsp">ODS</a></li>
-            <li>  
-              <a class='dropdown-trigger' href='#' data-target='dropdown1'>Acerca De
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-              <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!">Nosotros</a></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="#!">Políticas</a></li>
-              </ul>
-            </li>
-            <li><a href="collapsible.html">Login
-            </a></li>
+            <li><a href="ObsList.jsp">Registrarse</a></li>
+            <li><a href="Login.jsp">Login</a></li>
         </ul>
         </div>
     </nav>  
-
-
-    <!-- Content Structure -->
 
 
 
@@ -63,7 +72,7 @@
     <div class="row">
         <div class="col s12">
             <div class="carousel" >
-                <a class="carousel-item" href="#1!"><img src="resources/obs1_logo.png"></a>
+                <a class="carousel-item" href="#2!" onclick="<sendiD()"><img src="resources/obs1_logo.png"></a>
                 <a class="carousel-item" href="#2!"><img src="resources/obs2_logo.png"></a>
                 <a class="carousel-item" href="#3!"><img src="resources/obs3_logo.png"></a>
                 <a class="carousel-item" href="#4!"><img src="resources/obs4_logo.png"></a>
